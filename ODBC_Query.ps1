@@ -22,9 +22,13 @@ $connection = new-object System.Data.Odbc.OdbcConnection
         
 $connection.ConnectionString = $connectionString
 
+Write-Host "Connection Open"
+
 $connection.Open()
 
 $cmd = New-object System.Data.Odbc.OdbcCommand($query,$connection)
+
+Write-Host "Reading"
 
 $reader = $cmd.ExecuteReader()
 
@@ -50,6 +54,8 @@ while($reader.Read())
         }
     }
 }  
+
+ Write-Host "Total rows: $rows "
 
 $reader.Dispose()
 
